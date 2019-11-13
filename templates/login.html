@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="card">
+    <h5 class="card-header info-color white-text text-center py-4">
+      <strong>LOGIN</strong>
+    </h5>
+    <div class="card-body px-lg-5 pt-0"> <br/><br/><br/>
+    {% from "includes/formhelpers.html" import render_field %}
+    <form method="post" style="text-align: center;">
+      {{ render_field(form.username) }}
+      {{ render_field(form.password) }}
+	    <button type="submit" class="btn btn-primary">Login</button> <br/><br/><br/> <br/><br/>
+    </form>
+  </div>
+</div>
+{% endblock body %}
