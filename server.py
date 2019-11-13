@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
+Created on Sun Jul 21 17:37:11 2019
 
-@author: Batuhan Özdöl 150180701
+@author: Batuhan
 """
 #####################################################################
 ### Assignment skeleton
@@ -11,13 +12,11 @@
 
 
 from flask import Flask,render_template,flash,redirect,url_for,session,logging,request
-import psycopg2 as dbapi2
-from forms import *
+from flask_mysqldb import MySQL
+from wtforms import Form,StringField,PasswordField,validators,TextAreaField
 from passlib.hash import sha256_crypt
 from functools import wraps
-import os 
-import sys
-from dbinit import initialize
+from forms import *
 
 #Kullanıcı giriş decorator
 def login_required(f):
@@ -30,39 +29,74 @@ def login_required(f):
             return redirect(url_for("login"))
     return decorated_function
 
+
 app = Flask(__name__)
-app.config["SECRET_KEY"]="5e30279298f59aff1a8edcc00d1c82d82751b372c2d82f760d194694419211ea"
-dsn = "dbname='postgres' user='postgres' host='localhost' password='docker'"
 
 
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("index"))
-
-@app.route("/dashboard")
-@login_required
-def dashboard():
-    if session["username"]=="admin":
-        cursor = mysql.connection.cursor()
-        sorgu = "Select * from articles"
-        result = cursor.execute(sorgu,)
-        if result > 0:
-            articles = cursor.fetchall()
-            return render_template("dashboard.html",articles=articles)
-        else: 
-            return render_template("dashboard.html") 
-    else:
-        cursor = mysql.connection.cursor()
-        sorgu = "Select * from articles where author = %s"
-        result = cursor.execute(sorgu,(session["username"],))
-        if result > 0:
-            articles = cursor.fetchall()
-            return render_template("dashboard.html",articles=articles)
-        else: 
-            return render_template("dashboard.html")    
-
     
+@app.route("/userdashboard")
+@login_required
+def userdashboard():
+    cursor = mysql.connection.cursor()
+    sorgu = "Select * from articles where author = %s"
+    result = cursor.execute(sorgu,(session["username"],))
+    if result > 0:
+        articles = cursor.fetchall()
+        return render_template("user-dashboard.html",articles=articles)
+    else: 
+        return render_template("user-dashboard.html")
+    
+@app.route("/admindashboard")
+@login_required
+def admindashboard():
+    cursor = mysql.connection.cursor()
+    sorgu = "Select * from articles"
+    result = cursor.execute(sorgu,)
+    if result > 0:
+        articles = cursor.fetchall()
+        return render_template("admin-dashboard.html",articles=articles)
+    else: 
+        return render_template("admin-dashboard.html")
+
+@app.route("/login",methods=["GET","POST"])    
+def login():
+    form = LoginForm(request.form)
+    if request.method == "POST":
+        username = form.username.data
+        password_entered = form.password.data
+        cursor = mysql.connection.cursor()
+        sorgu = "Select * from users where username = %s"
+        result = cursor.execute(sorgu,(username,))
+        if (result > 0 ):
+            data = cursor.fetchone() #tüm bilgiler alındı
+            real_password = data["password"]
+            if( sha256_crypt.verify(password_entered,real_password)):   
+                """if (request.form.get("login")!= None):
+                    flash("Giriş başarılı","success")  
+                    user = User(data["username"],data["email"],data["birthdate"],data["password"],data["gender"])
+                    user.set_id(data["id"])
+                    login_user(user,remember=True)
+                    session["logged_in"] = True
+                    session["username"]= username
+                    return redirect(url_for("index")) """    
+                flash("Giriş başarılı","success")
+                session["logged_in"] = True
+                session["username"]= username
+                return redirect(url_for("index"))
+            else:
+                flash("Parola yanlış","danger")
+                return redirect(url_for("login"))
+        else:
+            flash("Kullanıcı bulunmuyor","danger")
+            return redirect(url_for("login"))
+    elif request.method == "GET":
+        return render_template("login.html",form=form)
+    return render_template("login.html",form=form)
+
 @app.route("/articles")
 def articles():
     cursor = mysql.connection.cursor()
@@ -161,64 +195,60 @@ def article(id):
     else:
         return render_template("article.html")
 
-@app.route("/login",methods=["GET","POST"])    
-def login():
-    form = LoginForm(request.form)
-    if request.method == "POST":
-        username = form.username.data
-        password_entered = form.password.data
-        cursor = dbapi2.connect(dsn).cursor()
-        sorgu = "Select * from USERS where username = %s"
-        result = cursor.execute(sorgu,(username,))
-        if (result > 0):       # user found
-            data = cursor.fetchone() # all infos are taken
-            real_password = data["password"]
-            cursor.close()
-            if(sha256_crypt.verify(password_entered,real_password)): # password matched 
-                flash("Giriş başarılı","success")
-                session["logged_in"] = True
-                session["username"]= username
-                if (session["username"]== "admin"):
-                    return redirect(url_for("dashboard"))
-                return redirect(url_for("articles"))
-            else:
-                flash("Wrong password","danger")
-                return redirect(url_for("login"))
-        else:
-            cursor.close()
-            flash("User not exists","danger")
-            return redirect(url_for("login"))
-    elif request.method == "GET":
-        return render_template("login.html",form=form)
-    return render_template("login.html",form=form)    
-
 @app.route("/register",methods=["GET","POST"])
 def register():
     form = RegisterForm(request.form)
     if request.method == "POST" and form.validate() :   # form validate ise doğru
+        name = form.name.data
+        surname = form.surname.data
         username = form.username.data
-        cursor = dbapi2.connect(dsn).cursor()
-        query = "Select * from USERS where username = %s"
-        result = cursor.execute(query,(username,))
-        if (result <= 0):           # user not found
+        cursor = mysql.connection.cursor()
+        sorgu2 = "Select * from users where username = %s"
+        result = cursor.execute(sorgu2,(username,))    
+        if (result <= 0):
+            gender = request.form.get("gender")
+            birthdate = form.birthdate.data
             email = form.email.data
-            birthDate = form.birthdate.data
-            password = sha256_crypt.encrypt(form.password.data)   
-            query = "Insert into USERS(username,birthDate,email,password) VALUES (%s,%s,%s,%s)"
-            cursor.execute(query,(username,birthDate,email,password)) #tek elemanlıysa (name,)
-            mysql.connection.commit()
-            cursor.close()
-            flash("Registered successfully","success") #message,category
-            return redirect(url_for("login"))   
+            if (birthdate==None and gender==None):
+                password = sha256_crypt.encrypt(form.password.data)   
+                sorgu = "Insert into users(name,surname,username,email,password) VALUES (%s,%s,%s,%s,%s)"
+                cursor.execute(sorgu,(name,surname,username,email,password)) #tek elemanlıysa (name,)
+                mysql.connection.commit()
+                cursor.close()
+                flash("Başarılı","success") #message,category
+                return redirect(url_for("login"))   
+            elif (gender == None):
+                password = sha256_crypt.encrypt(form.password.data)   
+                sorgu = "Insert into users(name,surname,username,email,birthdate,gender,password) VALUES (%s,%s,%s,%s,%s,NULL,%s)"
+                cursor.execute(sorgu,(name,surname,username,email,birthdate,password)) #tek elemanlıysa (name,)
+                mysql.connection.commit()
+                cursor.close()
+                flash("Başarılı","success") #message,category
+                return redirect(url_for("login"))   
+            elif (birthdate == None):
+                password = sha256_crypt.encrypt(form.password.data)   
+                sorgu = "Insert into users(name,surname,username,email,birthdate,gender,password) VALUES (name,surname,%s,%s,NULL,%s,%s)"
+                cursor.execute(sorgu,(name,surname,username,email,str(gender),password)) #tek elemanlıysa (name,)
+                mysql.connection.commit()
+                cursor.close()
+                flash("Başarılı","success") #message,category
+                return redirect(url_for("login"))   
+            else:
+                password = sha256_crypt.encrypt(form.password.data)   
+                sorgu = "Insert into users(name,surname,username,email,birthdate,gender,password) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+                cursor.execute(sorgu,(name,surname,username,email,birthdate,str(gender),password)) #tek elemanlıysa (name,)
+                mysql.connection.commit()
+                cursor.close()
+                flash("Başarılı","success") #message,category
+                return redirect(url_for("login"))   
         else:
-            cursor.close()
-            flash("Username exists !","warning")
+            flash("Kullanıcı adını değiştiriniz.","warning")
             return render_template("register.html",form = form)
     elif request.method == "GET":   
-            return render_template("register.html",form = form)
+        return render_template("register.html",form = form)
     else: 
-            flash("Registration failed","warning")
-            return render_template("register.html",form = form)
+        flash("Başarısız","warning")
+        return render_template("register.html",form = form)
 
 @app.route("/")
 def index():
@@ -229,6 +259,3 @@ def detail(id):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-

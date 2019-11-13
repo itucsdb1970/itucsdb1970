@@ -7,11 +7,13 @@ class ArticleForm(Form):
     content = TextAreaField("Yazı",validators=[validators.length(min=10)])
 
 class RegisterForm(Form):
-    username = StringField("Username",validators = [validators.length(min=1,max=30)])
-    email = StringField("Email",validators = [validators.Email(message = "Enter a valid email")])
-    birthdate = DateField("Birthdate", validators=[Required()])
-    password = PasswordField("Password",validators=[validators.DataRequired(message = "Please determine a password"),validators.EqualTo(fieldname="confirm",message="Password is not fit")])
-    confirm = PasswordField("Confirm Password")
+    name = StringField("Ad",validators = [validators.length(min=1,max=20)])
+    surname = StringField("Soyad",validators = [validators.length(min=1,max=20)])
+    username = StringField("Kullanıcı Adı",validators = [validators.length(min=1,max=35)])
+    birthdate = DateField('Birthdate',validators=(validators.Optional(),))
+    email = StringField("Email",validators = [validators.Email(message = "Lütfen geçerli email giriniz")])
+    password = PasswordField("Parola:",validators=[validators.DataRequired(message = "Lütfen parola belirleyiniz"),validators.EqualTo(fieldname="confirm",message="Parolanız uyuşmuyor.")])
+    confirm = PasswordField("Parola Doğrula")
 
 class LoginForm(Form):
     username = StringField("Username")
