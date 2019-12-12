@@ -142,7 +142,7 @@ def find_keyword(keyword):
 def find_keyword_music(keyword):
     with dbapi2.connect(url) as connection:
         cursor = connection.cursor()
-        sorgu = "Select * from musics where title like '%" + keyword + "%'"
+        sorgu = "Select * from musics where name like '%" + keyword + "%'"
         cursor.execute(sorgu) 
         word = cursor.fetchall()
         connection.commit()

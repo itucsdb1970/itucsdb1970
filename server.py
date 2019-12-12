@@ -133,7 +133,7 @@ def addmusic():
                 counter += 1
             if (tip3 != None ):
                 counter += 1
-            if (counter >= 2):
+            if (counter >= 2 or counter == 0):
                 flash("Invalid type value","warning")
                 return redirect(url_for("addmusic"))
             if (tip1 != None ):
