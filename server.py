@@ -38,7 +38,7 @@ def login_required(f):
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'ThisisSecret'
 login = LoginManager(app)
-url = "postgres://postgres:root@localhost:5432/postgres"
+url = "postgres://ocponcdw:3qJhgtvyyELu7FXS4FSujJEWJGoYx3V9@raja.db.elephantsql.com:5432/ocponcdw"
 app.config.from_object("settings")
 
 @login.user_loader

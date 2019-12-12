@@ -1,6 +1,6 @@
 import psycopg2 as dbapi2
 
-url = "postgres://postgres:root@localhost:5432/postgres"
+url = "postgres://ocponcdw:3qJhgtvyyELu7FXS4FSujJEWJGoYx3V9@raja.db.elephantsql.com:5432/ocponcdw"
 
 def find_author_inner(author):
     with dbapi2.connect(url) as connection:
