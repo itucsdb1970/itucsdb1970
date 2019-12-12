@@ -1,22 +1,21 @@
 {% extends "layout.html" %}
 
 {% block body %}	<br/>
-<h3> Makaleler </h3>
+<h3> Articles </h3>
 <hr>
 
 {% if articles %}
-<form action="/search" method="post">
-<input class="mr-sm-2" type="text" name="keyword" placeholder="Ara" aria-label="Search">
-  <button class="btn btn-outline-warning btn-rounded my-0" type="submit">Search</button>
-</form>
-<hr>
-<ul class="list-group">
-	
+	<form action="/search" method="post">
+		<input class="mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search">
+		<button class="btn btn-outline-warning btn-rounded my-0" type="submit">Search</button>
+	</form>
+	<hr>
+	<ul class="list-group">
 	{% for article in articles %}
-		<li class="list-group-item"><a href="article/{{article.id}}">{{article.title}}</a> </li> 
+		<li class="list-group-item"><a href="article/{{article[0]}}">{{article[2]}}</a> </li> 
 	{% endfor %}	
-</ul>
+	</ul>
 {% else %} 
-<div class = "alert alert-danger"> Makale yok </div>
+	<div class = "alert alert-danger"> No article </div>
 {% endif %}
 {% endblock body %}

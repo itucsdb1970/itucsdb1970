@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+{% if music %}
+<br/><br/><br/>
+Name: <strong> {{music[1]}} </strong> 
+<hr>
+Lyrics: {{music[2]}}
+<hr>
+Author: {{music[3]}}
+<hr>
+Type: {{music[4]}}
+<hr>
+Published Date: {{music[5]}}
+<hr>
+{{music.content|safe}}
+
+
+{% else %}
+<div class = "alert alert-warning">
+There is no music like that.
+</div>
+
+{% endif %}
+{% endblock body %}

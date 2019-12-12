@@ -1,14 +1,25 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<h3> Yazı Yaz </h3>
+<h3> Write an Article </h3>
 <hr/>
 
 {% from "includes/formhelpers.html" import render_field %}
 
 <form method="post">
 	{{ render_field(form.title,class="form-control") }}
+	<br/>
+	<select name="type">
+		<option selected="true" disabled="disabled"><bold>Gender</bold></option> 
+		<option>Scientific</option>
+		<option>Art</option>
+		<option>Literature</option>
+		<option>Philosophy</option>
+		<option>Other</option>
+	</select>
+	<br/><br/>
 	{{ render_field(form.content,class="form-control") }}
-	<button type="submit" class="btn btn-danger"> Ekle </button>
+	{{ render_field(form.source,class="form-control") }}
+	<button type="submit" class="btn btn-danger"> Add </button>
 </form>
 {% endblock body %}

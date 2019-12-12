@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h3> Dashboard </h3>
+<small> Welcome, {{session["username"]}} </small>
+<hr>
+
+<a href="/addarticle" class = "btn btn-danger"> Add Article  </a>
+{% if articles %}
+<br/><br/>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Type</th>
+      <th scope="col">Author ID</th>
+      <th scope="col">Date & Time</th>
+	    <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>  
+  <tbody>
+  {% for article in articles %}
+	 <tr>
+      <th scope="row">{{article[0]}}</th>
+      <td><a href="/article/{{article[0]}}">{{article[2]}}</td>
+      <td>{{article[4]}} </td>
+      <td>{{article[2]}} </td>
+      <td>{{article[5]}}</td>
+      <td><a href="/edit/{{article[0]}}" class="btn btn-danger">Update</a></td>
+	    <td><a href="/delete/{{article[0]}}" class="btn btn-danger">Delete</a></td>
+    </tr>
+  	{% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<br/><br/>
+<div class="alert alert-danger"> Article not exists </div>
+{% endif %}
+
+<a href="/addmusic" class = "btn btn-danger"> Add Music  </a>
+{% if musics %}
+<br/><br/>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Type</th>
+      <th scope="col">Date</th>
+	    <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>  
+  <tbody>
+    {% for music in musics %}
+	 <tr>
+      <th scope="row">{{music[0]}}</th>
+      <td><a href="/music/{{music[0]}}">{{music[1]}}</td>
+      <td>{{music[3]}}</td>
+      <td>{{music[4]}}</td>
+      {% if music[5] == None %}
+      <td> </td>
+      {% else %}
+      <td>{{music[5]}}</td>
+      {% endif %}
+      <td><a href="/editmusic/{{music[0]}}" class="btn btn-danger">Update</a></td>
+	    <td><a href="/deletemusic/{{music[0]}}" class="btn btn-danger">Delete</a></td>
+    </tr>
+  	{% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<br/><br/>
+<div class="alert alert-danger"> Music not exists </div>
+{% endif %}
+{% endblock body %}

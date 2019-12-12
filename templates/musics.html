@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block body %}	<br/>
+<h3> Musics </h3>
+<hr>
+
+{% if musics %}
+<form action="/search" method="post">
+<input class="mr-sm-2" type="text" name="keyword" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-warning btn-rounded my-0" type="submit">Search</button>
+</form>
+<hr>
+<ul class="list-group">
+	
+	{% for music in musics %}
+		<li class="list-group-item"><a href="music/{{music[0]}}">{{music[1]}}</a> </li> 
+		{% if session["username"] !="admin" %}
+		<a href="/fav/{{music[0]}}" class = "btn btn-primary">Fav</a>
+		{% endif %}
+	{% endfor %}	
+</ul>
+{% else %} 
+<div class = "alert alert-danger"> No music </div>
+{% endif %}
+{% endblock body %}

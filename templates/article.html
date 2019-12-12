@@ -5,18 +5,22 @@
 
 {% if article %}
 <br/><br/><br/>
-Başlık: <strong> {{article.title}} </strong> 
+Title: <strong> {{article[2]}} </strong> 
 <hr>
-Yazar: {{article.author}}
+Author ID: {{article[1]}}
 <hr>
-Tarih: {{article.date}}
+Content: {{article[3]}}
+<hr>
+Type: {{article[4]}}
+<hr>
+Published Date & Time: {{article[5]}}
 <hr>
 {{article.content|safe}}
 
 
 {% else %}
 <div class = "alert alert-warning">
-Böyle bir makale yok
+There is no article like that.
 </div>
 
 {% endif %}

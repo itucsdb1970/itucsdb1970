@@ -3,19 +3,24 @@ from wtforms.validators import Required,DataRequired
 from wtforms.fields.html5 import DateField
 
 class ArticleForm(Form):
-    title = StringField("Başlık",validators=[validators.length(min=1,max=100)])
-    content = TextAreaField("Yazı",validators=[validators.length(min=10)])
+    title = StringField("Title",validators=[validators.length(min=1,max=100)])
+    content = TextAreaField("Content",validators=[validators.length(min=10)])
+    source = StringField("Source URL",validators=[validators.length(max=30)])
+
+class MusicForm(Form):
+    name = StringField("Name",validators = [validators.length(min=1,max=20)])
+    lyrics = TextAreaField("Content",validators=[validators.length(min=10)])
+    author = StringField("Author",validators = [validators.length(min=1,max=20)])
+    date = DateField('Published Date',validators=(validators.Optional(),))
 
 class RegisterForm(Form):
-    name = StringField("Ad",validators = [validators.length(min=1,max=20)])
-    surname = StringField("Soyad",validators = [validators.length(min=1,max=20)])
-    username = StringField("Kullanıcı Adı",validators = [validators.length(min=1,max=35)])
+    username = StringField("Username",validators = [validators.length(min=1,max=35)])
     birthdate = DateField('Birthdate',validators=(validators.Optional(),))
-    email = StringField("Email",validators = [validators.Email(message = "Lütfen geçerli email giriniz")])
-    password = PasswordField("Parola:",validators=[validators.DataRequired(message = "Lütfen parola belirleyiniz"),validators.EqualTo(fieldname="confirm",message="Parolanız uyuşmuyor.")])
-    confirm = PasswordField("Parola Doğrula")
+    email = StringField("E-mail",validators = [validators.Email(message = "Please enter a valid email")])
+    password = PasswordField("Password",validators=[validators.DataRequired(message = "Enter a password"),
+                            validators.EqualTo(fieldname="confirm",message="Password doesn't match !")])
+    confirm = PasswordField("Confirm your password")
 
 class LoginForm(Form):
     username = StringField("Username")
     password = PasswordField("Password")
-                    
