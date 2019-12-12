@@ -20,7 +20,7 @@ def initialize(url):
 # for elephant sql url = postgres://ocponcdw:3qJhgtvyyELu7FXS4FSujJEWJGoYx3V9@raja.db.elephantsql.com:5432/ocponcdw
 # localhost = postgres://postgres:root@localhost:5432/postgres
 if __name__ == "__main__":
-    url = os.getenv("DATABASE_URL")
+    url = "postgres://ocponcdw:3qJhgtvyyELu7FXS4FSujJEWJGoYx3V9@raja.db.elephantsql.com:5432/ocponcdw"
     if url is None:
         print("Usage: DATABASE_URL=url python dbinit.py", file=sys.stderr)
         sys.exit(1)
