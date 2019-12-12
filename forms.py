@@ -9,7 +9,7 @@ class ArticleForm(Form):
 
 class MusicForm(Form):
     name = StringField("Name",validators = [validators.length(min=1,max=20)])
-    lyrics = TextAreaField("Content",validators=[validators.length(min=10)])
+    lyrics = TextAreaField("Lyrics",validators=[validators.length(min=10)])
     author = StringField("Author",validators = [validators.length(min=1,max=20)])
     date = DateField('Published Date',validators=(validators.Optional(),))
 
