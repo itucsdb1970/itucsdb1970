@@ -1,17 +1,20 @@
-Welcome to itucsdbNN's documentation!
+Welcome to itucsdb1970's documentation!
 =====================================
 
-:Team: Team Name
+:Team:	itucsdb1970
 
 :Members:
 
-   * Member 1
-   * Member 2
-   * Member 3
-   * Member 4
-   * Member 5
+   * Batuhan Özdöl
 
-**project description goes here (a few paragraphs)**
+**This is a system that users can publish their articles like
+tweeting and others can see all published articles. Users also
+create their own music list by adding favourites list
+the musics they liked.**
+
+Web-site : http://itucsdb1970.herokuapp.com/ 
+
+Github Page: https://github.com/itucsdb1970/itucsdb1970 
 
 Contents:
 
