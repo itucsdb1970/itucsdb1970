@@ -5,10 +5,9 @@ User Guide
 screenshots whereever appropriate**
 
 **to add a picture, use the following example**::
-.. figure:: 0
-      :scale: 0 %
-      :alt:  
- .. figure:: register.png
+.. figure:: 
+  
+ .. figure:: register.PNG
       :scale: 50 %
       :alt: Registration 
 
