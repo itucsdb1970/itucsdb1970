@@ -5,6 +5,11 @@ Database Design
 ---------------
 
 **include the E/R diagram(s)**
+  .. figure:: e-r.png
+      :scale: 50 %
+      :alt: E/R diagram
+
+      This is the E/R diagram of my system.
 
 Code
 ----
