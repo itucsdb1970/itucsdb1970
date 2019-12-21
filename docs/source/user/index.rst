@@ -6,7 +6,6 @@ screenshots whereever appropriate**
 
 **to add a picture, use the following example**::
  
-
 .. figure:: register.PNG
       :scale: 50 %
       :alt: Registration
