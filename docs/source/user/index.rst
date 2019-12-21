@@ -8,16 +8,16 @@ screenshots whereever appropriate**
  
 
 .. figure:: register.PNG
-    :scale: 50 %
-    :alt: Registration 
+     :scale: 50 %
+     :alt: Registration 
 
-    Users must register to system before log-in if they have no account. User must enter their username, email and password; other parts are optional. Passwords will be hashed for storing in tables.
+     Users must register to system before log-in if they have no account. User must enter their username, email and password; other parts are optional. Passwords will be hashed for storing in tables.
 	  
   .. figure:: login.PNG
-      :scale: 50 %
-      :alt: Login
+     :scale: 50 %
+     :alt: Login
 
-      User and admin will login to system by entering their username and password. 
+     User and admin will login to system by entering their username and password. 
 
   .. figure:: index.PNG
       :scale: 50 %
