@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Developer Guide &mdash; ITUCSDB1970  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Batuhan Özdöl" href="member1.html" />
+    <link rel="prev" title="Parts Implemented by Batuhan Özdöl" href="../user/member1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1970
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#database-design">Database Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code">Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="member1.html">Parts Implemented by Batuhan Özdöl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1970</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Developer Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="developer-guide">
+<h1>Developer Guide<a class="headerlink" href="#developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="database-design">
+<h2>Database Design<a class="headerlink" href="#database-design" title="Permalink to this headline">¶</a></h2>
+<dl>
+<dt><strong>include the E/R diagram(s)</strong></dt><dd><div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/e-r.png"><img alt="E/R diagram" src="../_images/e-r.png" style="width: 355.5px; height: 225.5px;" /></a>
+<p class="caption"><span class="caption-text">This is the E/R diagram of my system.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</dd>
+</dl>
+</div>
+<div class="section" id="code">
+<h2>Code<a class="headerlink" href="#code" title="Permalink to this headline">¶</a></h2>
+<p><strong>explain the technical structure of your code</strong></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_author_inner</span><span class="p">(</span><span class="n">author</span><span class="p">):</span>
+                  <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                          <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                          <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM ARTICLES inner join USERS on author = USERS.id  WHERE author = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                          <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="n">author</span><span class="p">,))</span>
+                          <span class="n">user</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                          <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                          <span class="k">return</span> <span class="n">user</span>
+</pre></div>
+</div>
+<p>Articles table stores article informations and its author id. This code provides to take author name by inner join with Users table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_author</span><span class="p">(</span><span class="n">author</span><span class="p">):</span>
+              <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                      <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                      <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM ARTICLES WHERE author = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                      <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="n">author</span><span class="p">,))</span>
+                      <span class="n">user</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                      <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                      <span class="k">return</span> <span class="n">user</span>
+</pre></div>
+</div>
+<p>This function returns articles that its author is given as parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_articles</span><span class="p">():</span>
+              <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                      <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                      <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM ARTICLES&quot;</span>
+                      <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">)</span>
+                      <span class="n">articles</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                      <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                      <span class="k">return</span> <span class="n">articles</span>
+</pre></div>
+</div>
+<p>This function returns all articles in our database.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_favourites</span><span class="p">(</span><span class="n">userid</span><span class="p">):</span>
+      <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+              <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+              <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM FAVOURITES inner join MUSICS on musics.id = musicid  WHERE userid = </span><span class="si">%s</span><span class="s2">&quot;</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="n">userid</span><span class="p">,))</span>
+              <span class="n">musics</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+              <span class="k">return</span> <span class="n">musics</span>
+</pre></div>
+</div>
+<p>This function provides to take music information which is added to favourite list by user whose id is parameter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_musics_id</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+      <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+              <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+              <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM MUSICS where id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="nb">id</span><span class="p">,))</span>
+              <span class="n">music</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+              <span class="k">return</span> <span class="n">music</span>
+</pre></div>
+</div>
+<p>Function that returns music which has given id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_articles_id</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+      <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+              <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+              <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM ARTICLES where id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="nb">id</span><span class="p">,))</span>
+              <span class="n">articles</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+              <span class="k">return</span> <span class="n">articles</span>
+</pre></div>
+</div>
+<p>This function returns article which has given id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">delete_musics_id</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+          <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                  <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                  <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;delete FROM MUSICS where id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                  <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="nb">id</span><span class="p">,))</span>
+                  <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">delete_articles_id</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+          <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                  <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                  <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;delete FROM ARTICLES where id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                  <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="nb">id</span><span class="p">,))</span>
+                  <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">delete_user_username</span><span class="p">(</span><span class="n">username</span><span class="p">):</span>
+          <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                  <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                  <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;delete FROM USERS where username = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                  <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">,(</span><span class="n">username</span><span class="p">,))</span>
+                  <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Functions that deletes music, article and user has given id or username.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_keyword</span><span class="p">(</span><span class="n">keyword</span><span class="p">):</span>
+      <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+              <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+              <span class="n">sorgu</span> <span class="o">=</span> <span class="s2">&quot;Select * from articles where title like &#39;%&quot;</span> <span class="o">+</span> <span class="n">keyword</span> <span class="o">+</span> <span class="s2">&quot;%&#39;&quot;</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">sorgu</span><span class="p">)</span>
+              <span class="n">word</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+              <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+              <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+              <span class="k">return</span> <span class="n">word</span>
+</pre></div>
+</div>
+<p>This function is used in search operation which user can type an article title to read it. This function lists all articles, its title contains word that user typed.</p>
+<p>I wanted to inform about this functions because the number of functions is too much for each operation.</p>
+<p>Jinja template is used for rendering html pages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="n">session</span><span class="p">[</span><span class="s2">&quot;logged_in&quot;</span><span class="p">]</span> <span class="ow">and</span> <span class="n">session</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;admin&quot;</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">li</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav-item active&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav-link&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/admindashboard&quot;</span><span class="o">&gt;</span> <span class="n">Dashboard</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">li</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav-item active&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav-link&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/logout&quot;</span><span class="o">&gt;</span> <span class="n">Log</span> <span class="n">out</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="k">elif</span> <span class="n">session</span><span class="p">[</span><span class="s2">&quot;logged_in&quot;</span><span class="p">]</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="n">li</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav-item active&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">a</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;nav-link&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/userdashboard&quot;</span><span class="o">&gt;</span> <span class="n">Dashboard</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Navbar is designed by looking at session. If user is admin it navigates to admindashboard otherwise, to userdashboard.
+Flash messages are used to inform user about the operations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/admindashboard&quot;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">admindashboard</span><span class="p">():</span>
+      <span class="n">articles</span> <span class="o">=</span> <span class="n">find_articles</span><span class="p">()</span>
+      <span class="n">musics</span> <span class="o">=</span> <span class="n">find_musics</span><span class="p">()</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;admindashboard.html&quot;</span><span class="p">,</span><span class="n">articles</span><span class="o">=</span><span class="n">articles</span><span class="p">,</span><span class="n">musics</span><span class="o">=</span><span class="n">musics</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In admin dashboard, admin can insert article and musics but user can only publish articles, they can add musics to their favourite list and see their list on user dashboard.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/login&quot;</span><span class="p">,</span><span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span><span class="s2">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+      <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;POST&quot;</span><span class="p">:</span>
+              <span class="n">username</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">username</span><span class="o">.</span><span class="n">data</span>
+              <span class="n">password_entered</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span>
+              <span class="n">result</span> <span class="o">=</span> <span class="n">find_username</span><span class="p">(</span><span class="n">username</span><span class="p">)</span>
+              <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">):</span>
+                      <span class="n">data</span> <span class="o">=</span> <span class="n">result</span>
+                      <span class="n">real_password</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+                      <span class="k">if</span><span class="p">(</span> <span class="n">sha256_crypt</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span><span class="n">password_entered</span><span class="p">,</span><span class="n">real_password</span><span class="p">)):</span>
+                              <span class="k">if</span> <span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;login&quot;</span><span class="p">)</span><span class="o">!=</span> <span class="kc">None</span><span class="p">):</span>
+                                      <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Login successfully&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+                                      <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+                                      <span class="n">user</span><span class="o">.</span><span class="n">set_id</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                                      <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="n">remember</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                                      <span class="n">session</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">username</span>
+                                      <span class="n">session</span><span class="p">[</span><span class="s2">&quot;logged_in&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                                      <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">))</span>
+                              <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Login successfully&quot;</span><span class="p">,</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+                              <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+                              <span class="n">user</span><span class="o">.</span><span class="n">set_id</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                              <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="n">remember</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                              <span class="n">session</span><span class="p">[</span><span class="s2">&quot;logged_in&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                              <span class="n">session</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">username</span>
+                              <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;index&quot;</span><span class="p">))</span>
+                      <span class="k">else</span><span class="p">:</span>
+                              <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;Wrong password&quot;</span><span class="p">,</span><span class="s2">&quot;danger&quot;</span><span class="p">)</span>
+                              <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;login&quot;</span><span class="p">))</span>
+              <span class="k">else</span><span class="p">:</span>
+                      <span class="n">flash</span><span class="p">(</span><span class="s2">&quot;User not exists !&quot;</span><span class="p">,</span><span class="s2">&quot;danger&quot;</span><span class="p">)</span>
+                      <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;login&quot;</span><span class="p">))</span>
+      <span class="k">elif</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+              <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;login.html&quot;</span><span class="p">,</span><span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;login.html&quot;</span><span class="p">,</span><span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Login is controlled by checking the users tables. Is password is matching, is user given username exists, etc. conditions are checked.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/music/&lt;string:id&gt;&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">music</span><span class="p">(</span><span class="nb">id</span><span class="p">):</span>
+      <span class="n">music</span> <span class="o">=</span> <span class="n">find_musics_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+      <span class="k">if</span> <span class="n">music</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+              <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;music.html&quot;</span><span class="p">,</span><span class="n">music</span><span class="o">=</span><span class="n">music</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+              <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s2">&quot;music.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Music’s information are listing by finding its information on table and send fetched music to necessary page. Article’s information are seen by same function.</p>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="member1.html">Parts Implemented by Batuhan Özdöl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="member1.html#forms">Forms</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="member1.html" class="btn btn-neutral float-right" title="Parts Implemented by Batuhan Özdöl" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../user/member1.html" class="btn btn-neutral float-left" title="Parts Implemented by Batuhan Özdöl" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1970
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
