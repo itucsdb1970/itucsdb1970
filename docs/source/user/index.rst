@@ -73,7 +73,7 @@ screenshots whereever appropriate**
 	
       Musics are only added by admin. In musics section on navbar. Every user can see listed musics and if they like them, they can add their favourite list by clicking fav button. Users can see their favourite music list by looking at their dashboard. They can also unfav selected musics.
 	  
-   .. figure:: musicinfo.PNG
+  .. figure:: musicinfo.PNG
       :scale: 50 %
       :alt: Music Info 
 	  
