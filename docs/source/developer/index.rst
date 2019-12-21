@@ -90,6 +90,7 @@ Code
    This function returns article which has given id.
 	
    .. code-block:: python
+   
 	  def delete_musics_id(id):
 		with dbapi2.connect(url) as connection:
 			cursor = connection.cursor()
@@ -114,6 +115,7 @@ Code
    Functions that deletes music, article and user has given id or username.
 	
    .. code-block:: python
+   
 	  def find_keyword(keyword):
 		with dbapi2.connect(url) as connection:
 			cursor = connection.cursor()
@@ -129,9 +131,11 @@ Code
    I wanted to inform about this functions because the number of functions is too much for each operation.
 	
    Jinja template is used for rendering html pages.
+   
    .. code-block:: python
+   
 	  {% if session["logged_in"] and session["username"]=="admin" %}
-		  <li class="nav-item active">
+	  <li class="nav-item active">
             <a class="nav-link" href="/admindashboard"> Dashboard</a>
           </li>
           <li class="nav-item active">
@@ -144,7 +148,9 @@ Code
 
    Navbar is designed by looking at session. If user is admin it navigates to admindashboard otherwise, to userdashboard.
    Flash messages are used to inform user about the operations.
+   
    .. code-block:: python
+   
 	  @app.route("/admindashboard")
 	  @login_required
 	  def admindashboard():
@@ -155,6 +161,7 @@ Code
    In admin dashboard, admin can insert article and musics but user can only publish articles, they can add musics to their favourite list and see their list on user dashboard.
 	
    .. code-block:: python
+   
 	  @app.route("/login",methods=["GET","POST"])    
 	  def login():
 		form = LoginForm(request.form)
@@ -194,6 +201,7 @@ Code
    Login is controlled by checking the users tables. Is password is matching, is user given username exists, etc. conditions are checked.
 	
    .. code-block:: python
+   
 	  @app.route("/music/<string:id>")
 	  def music(id):
 		music = find_musics_id(id)
