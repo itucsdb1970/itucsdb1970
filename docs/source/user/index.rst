@@ -6,9 +6,10 @@ screenshots whereever appropriate**
 
 **to add a picture, use the following example**::
   
- .. figure:: register.PNG
-:scale: 50 %
-:alt: Registration 
+  
+.. figure:: register.PNG
+	:scale: 50 %
+        :alt: Registration 
 
       Users must register to system before log-in if they have no account. User must enter their username, email and password; other parts are optional. Passwords will be hashed for storing in tables.
 	  
